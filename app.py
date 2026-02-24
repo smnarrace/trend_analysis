@@ -8,6 +8,12 @@ st.title("📊 문피아·네이버·카카오 통합 키워드 트렌드")
 st.markdown("현재 가장 핫한 웹툰/웹소설 키워드를 한눈에 확인하세요.")
 
 try:
+    try:
+        with open("ai_summary.txt", "r", encoding="utf-8") as f:
+            ai_text = f.read()
+        st.info(f"🤖 **Gemini AI 트렌드 요약 리포트**\n\n{ai_text}")
+    except FileNotFoundError:
+        pass
     # 💡 [핵심] 무겁게 직접 긁어오지 않고, 터미널에서 미리 만들어둔 완성본을 읽기만 합니다!
     df = pd.read_csv("trend_report.csv")
     
